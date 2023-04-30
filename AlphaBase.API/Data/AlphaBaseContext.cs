@@ -1,4 +1,5 @@
 ﻿using Alpha.API.Data.Entities;
+using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -21,12 +22,66 @@ namespace Alpha.API.Data
         public DbSet<Payment>? Payments { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        { 
+        {
             optionsBuilder.UseNpgsql("Host=localhost;Database=AlphaBase;Username=michaelshepherd;Password=Laelynes5267!");
             //Add to help with migrations for Datetime timestamp!!!!
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
         }
+
+        protected override void OnModelCreating(ModelBuilder bldr)
+        {
+            bldr.Entity<User>()
+              .HasData(new
+              {
+                  UserId = 1,
+                  FirstName = "Michael",
+                  LastName = "Shepherd",
+                  Password = "Password1234321!",
+                  AddressId = 1,
+                  EmailAddressId = 1,
+                  PhoneId = 1,
+                  PaymentId = 1
+              });
+
+            bldr.Entity<Address>()
+              .HasData(new
+              {
+                  AddressId = 1,
+                  Address1 = "1461 Upper Second Creek Road",
+                  CityTown = "Hazard",
+                  StateProvince = "KY",
+                  PostalCode = "41701",
+                  Country = "USA",
+                  UserId = 1
+              });
+
+            bldr.Entity<EmailAddress>()
+             .HasData(new
+             {
+                 EmailAddressId = 1,
+                 Email = "michaelshep52@gmail.com"
+             });
+
+            bldr.Entity<Phone>()
+             .HasData(new
+             {
+                 PhoneId = 1,
+                 PhoneNumber = "606-438-4485"
+             });
+
+            bldr.Entity<Payment>()
+           .HasData(new
+           {
+               PaymentId = 1,
+               CardType = "Master Visa",
+               CardNumber = "0000111122223333",
+               ExpirationDate = "02122025",
+               CardNameType = "Michael Shepherd",
+               SecurityCode = "123"
+           });
+        }
     }
 }
+    
 
