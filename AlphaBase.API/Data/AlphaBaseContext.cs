@@ -23,7 +23,8 @@ namespace Alpha.API.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Database=AlphaBase;Username=michaelshepherd;Password=Laelynes5267!");
+            optionsBuilder.UseNpgsql("Host=localhost;Database=AlphaBase;Username=michaelshepherd;Password=Laelynes5267!")
+                .EnableSensitiveDataLogging();
             //Add to help with migrations for Datetime timestamp!!!!
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
@@ -49,6 +50,8 @@ namespace Alpha.API.Data
               {
                   AddressId = 1,
                   Address1 = "1461 Upper Second Creek Road",
+                  Address2 = "",
+                  Address3 = "",
                   CityTown = "Hazard",
                   StateProvince = "KY",
                   PostalCode = "41701",
@@ -60,26 +63,17 @@ namespace Alpha.API.Data
              .HasData(new
              {
                  EmailAddressId = 1,
-                 Email = "michaelshep52@gmail.com"
+                 Email = "michaelshep52@gmail.com",
+                 UserId = 1
              });
 
             bldr.Entity<Phone>()
              .HasData(new
              {
                  PhoneId = 1,
-                 PhoneNumber = "606-438-4485"
+                 PhoneNumber = 606-438-4485,
+                 UserId = 1
              });
-
-            bldr.Entity<Payment>()
-           .HasData(new
-           {
-               PaymentId = 1,
-               CardType = "Master Visa",
-               CardNumber = "0000111122223333",
-               ExpirationDate = "02122025",
-               CardNameType = "Michael Shepherd",
-               SecurityCode = "123"
-           });
         }
     }
 }

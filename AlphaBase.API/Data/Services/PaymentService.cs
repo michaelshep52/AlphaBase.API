@@ -48,12 +48,6 @@ namespace Alpha.API.Data.Services
                 var paymentRepo = await _paymentRepo.GetById(payment.PaymentId);
                 if (paymentRepo != null)
                 {
-                    paymentRepo.CardType = payment.CardType;
-                    paymentRepo.CardNumber = payment.CardNumber;
-                    paymentRepo.ExpirationDate = payment.ExpirationDate;
-                    paymentRepo.Name = payment.Name;
-                    paymentRepo.SecurityCode = payment.SecurityCode;
-
                     _paymentRepo.Update(paymentRepo);
                 }
             }

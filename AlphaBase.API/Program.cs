@@ -1,12 +1,7 @@
 ﻿var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-/*builder.Services.AddDIServices(builder.Configuration);
-builder.Services.AddScoped<IAccountService, AccountService>();
-builder.Services.AddScoped<ICharacterService, CharacterService>();
-builder.Services.AddScoped<IInventoryService, InventoryService>();
-builder.Services.AddScoped<IPlayerService, PlayerService>();
-*/
+
 builder.Services.AddControllers();
 /*builder.Services.AddApiVersioning(opt =>
 {

@@ -35,7 +35,7 @@ namespace Alpha.API.Models
         public ICollection<PhoneModel>? Phones { get; set; }
 
         // Payment
-        public ICollection<PaymentModel>? Payments { get; set; }
+        public int PaymentId { get; set; }
 
     }
 }
