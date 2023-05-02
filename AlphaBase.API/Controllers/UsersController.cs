@@ -7,119 +7,98 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Alpha.API.Data;
 using Alpha.API.Data.Entities;
+using Alpha.API.Data.Services.Interface;
+using System.Security.Principal;
 
 namespace Alpha.API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiVersion("1.0")]
     public class UsersController : ControllerBase
     {
-        private readonly AlphaBaseContext _context;
-
-        public UsersController(AlphaBaseContext context)
+        public readonly IUserService _userService;
+        public UsersController(IUserService userService)
         {
-            _context = context;
+            _userService = userService;
         }
 
         // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUser()
+        public async Task<IActionResult> GetUserList()
         {
-          if (_context.User == null)
-          {
-              return NotFound();
-          }
-            return await _context.User.ToListAsync();
-        }
-
-        // GET: api/Users/5
-        [HttpGet("{UserId}")]
-        public async Task<ActionResult<User>> GetUser(int userId)
-        {
-          if (_context.User == null)
-          {
-              return NotFound();
-          }
-            var user = await _context.User.FindAsync(userId);
-
-            if (user == null)
+            var usersList = await _userService.GetAll();
+            if (usersList == null)
             {
                 return NotFound();
             }
-
-            return user;
+            return Ok(usersList);
         }
 
-        // PUT: api/Users/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{userId}")]
-        public async Task<IActionResult> PutUser(int userId, User user)
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetAccountById(int userId)
         {
-            if (userId != user.UserId)
+            var account = await _userService.GetById(userId);
+
+            if (account != null)
+            {
+                return Ok(account);
+            }
+            else
             {
                 return BadRequest();
             }
-
-            _context.Entry(user).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(userId))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
         }
 
-        // POST: api/Users
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+            // POST: api/Users
+        [HttpPut]
+        public async Task<IActionResult> CreateUser(User user)
         {
-          if (_context.User == null)
-          {
-              return Problem("Entity set 'AlphaBaseContext.User'  is null.");
-          }
-            _context.User.Add(user);
-            await _context.SaveChangesAsync();
+            var isUserCreated = await _userService.Create(user);
 
-            return CreatedAtAction("GetUser", new { userId = user.UserId }, user);
+            if (isUserCreated)
+            {
+                return Ok(isUserCreated);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
-        // DELETE: api/Users/5
+        // PUT api/values/5
+        [HttpPut]
+        public async Task<IActionResult> UpdateUser(User user)
+        {
+            if (user != null)
+            {
+                var isUserCreated = await _userService.Update(user);
+                if (isUserCreated)
+                {
+                    return Ok(isUserCreated);
+                }
+                return BadRequest();
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+        // DELETE api/values/5
         [HttpDelete("{userId}")]
-        public async Task<IActionResult> DeleteUser(int userId)
+        public async Task<IActionResult> DeleteAccount(int userId)
         {
-            if (_context.User == null)
+            var isUserCreated = await _userService.Delete(userId);
+
+            if (isUserCreated)
             {
-                return NotFound();
+                return Ok(isUserCreated);
             }
-            var user = await _context.User.FindAsync(userId);
-            if (user == null)
+            else
             {
-                return NotFound();
+                return BadRequest();
             }
-
-            _context.User.Remove(user);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool UserExists(int userId)
-        {
-            return (_context.User?.Any(e => e.UserId == userId)).GetValueOrDefault();
         }
     }
 }

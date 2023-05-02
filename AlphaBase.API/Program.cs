@@ -1,6 +1,17 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using Alpha.API.Data.Interface;
+using Alpha.API.Data.Repository;
 
-// Add services to the container.
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddTransient(typeof(IAlphaRepository<>), typeof(AlphaRepository<>));
+builder.Services.AddTransient<IUserRepository, UserRepository>();
+builder.Services.AddTransient<IAddressRepository, AddressRepository>();
+builder.Services.AddTransient<IEmailAddressRepository, EmailAddressRepository>();
+builder.Services.AddTransient<IPhoneRepository, PhoneRepository>();
+builder.Services.AddTransient<IPaymentRepository, PaymentRepository>();
+
+
+// Add services to the container
 
 builder.Services.AddControllers();
 /*builder.Services.AddApiVersioning(opt =>
