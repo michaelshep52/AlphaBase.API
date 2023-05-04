@@ -2,10 +2,11 @@
 using System.Net.Mail;
 using Alpha.API.Data.Entities;
 using Alpha.API.Data.Interface;
+using Alpha.API.Data.Services.Interface;
 
 namespace Alpha.API.Data.Services
 {
-    public class EmailAddressService
+    public class EmailAddressService : IEmailAddressService
     {
         private readonly IEmailAddressRepository _emailAddressRepo;
 

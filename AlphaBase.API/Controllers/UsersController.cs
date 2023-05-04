@@ -9,6 +9,7 @@ using Alpha.API.Data;
 using Alpha.API.Data.Entities;
 using Alpha.API.Data.Services.Interface;
 using System.Security.Principal;
+using Alpha.API.Data.Services;
 
 namespace Alpha.API.Controllers
 {
@@ -18,6 +19,7 @@ namespace Alpha.API.Controllers
     public class UsersController : ControllerBase
     {
         public readonly IUserService _userService;
+
         public UsersController(IUserService userService)
         {
             _userService = userService;
@@ -36,13 +38,13 @@ namespace Alpha.API.Controllers
         }
 
         [HttpGet("{userId}")]
-        public async Task<IActionResult> GetAccountById(int userId)
+        public async Task<IActionResult> GetUserById(int userId)
         {
-            var account = await _userService.GetById(userId);
+            var user = await _userService.GetById(userId);
 
-            if (account != null)
+            if (user != null)
             {
-                return Ok(account);
+                return Ok(user);
             }
             else
             {
@@ -87,7 +89,7 @@ namespace Alpha.API.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{userId}")]
-        public async Task<IActionResult> DeleteAccount(int userId)
+        public async Task<IActionResult> DeleteUser(int userId)
         {
             var isUserCreated = await _userService.Delete(userId);
 

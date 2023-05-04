@@ -1,10 +1,11 @@
 ﻿using System;
 using Alpha.API.Data.Entities;
 using Alpha.API.Data.Interface;
+using Alpha.API.Data.Services.Interface;
 
 namespace Alpha.API.Data.Services
 {
-    public class PaymentService
+    public class PaymentService : IPaymentService
     {
         private readonly IPaymentRepository _paymentRepo;
 

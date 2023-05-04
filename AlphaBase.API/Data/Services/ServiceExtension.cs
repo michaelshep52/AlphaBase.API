@@ -1,11 +1,11 @@
 ﻿using System;
+using Alpha.API.Data.Interface;
+using Alpha.API.Data.Repository;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Alpha.API.Data.Services
 {
-   /* public class ServiceExtension
+    public static class ServiceExtension
     {
         public static IServiceCollection AddDIServices(this IServiceCollection services, IConfiguration configuration)
         {
@@ -13,15 +13,14 @@ namespace Alpha.API.Data.Services
             {
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
             });
-            services.AddScoped<IAlpha, UnitOfWork>();
-            services.AddScoped<IAccountRepository, AccountRepository>();
-            services.AddScoped<ICharacterRepository, CharacterRepository>();
-            services.AddScoped<IInventoryRepository, InventoryRepository>();
-            services.AddScoped<IPlayerRepository, PlayerRepository>();
-
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IAddressRepository, AddressRepository>();
+            services.AddScoped<IEmailAddressRepository, EmailAddressRepository>();
+            services.AddScoped<IPhoneRepository, PhoneRepository>();
+            services.AddScoped<IPaymentRepository, PaymentRepository>();
 
             return services;
         }
-    }*/
+    }
 }
 

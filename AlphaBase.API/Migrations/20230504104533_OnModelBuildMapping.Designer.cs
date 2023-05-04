@@ -3,6 +3,7 @@ using System;
 using Alpha.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Alpha.API.Migrations
 {
     [DbContext(typeof(AlphaBaseContext))]
-    partial class AlphaBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230504104533_OnModelBuildMapping")]
+    partial class OnModelBuildMapping
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -121,13 +124,6 @@ namespace Alpha.API.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Payments");
-
-                    b.HasData(
-                        new
-                        {
-                            PaymentId = 1,
-                            UserId = 1
-                        });
                 });
 
             modelBuilder.Entity("Alpha.API.Data.Entities.Phone", b =>

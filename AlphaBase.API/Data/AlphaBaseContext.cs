@@ -1,20 +1,22 @@
-﻿using Alpha.API.Data.Entities;
+﻿using System.Reflection.Emit;
+using Alpha.API.Data.Entities;
 using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 
 
 namespace Alpha.API.Data
 {
     public class AlphaBaseContext : DbContext
     {
-        /*
+        
         private readonly IConfiguration _config;
 
         public AlphaBaseContext(DbContextOptions options, IConfiguration config) : base(options)
         {
             _config = config;
         }
-      */
+      
         public DbSet<User>? User { get; set; }
         public DbSet<EmailAddress>? EmailAddresses { get; set; }
         public DbSet<Address>? Address { get; set; }
@@ -72,6 +74,13 @@ namespace Alpha.API.Data
              {
                  PhoneId = 1,
                  PhoneNumber = 606-438-4485,
+                 UserId = 1
+             });
+
+            bldr.Entity<Payment>()
+             .HasData(new
+             {
+                 PaymentId = 1,
                  UserId = 1
              });
         }

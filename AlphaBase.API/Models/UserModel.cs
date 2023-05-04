@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Alpha.API.Models
 {
@@ -20,6 +21,7 @@ namespace Alpha.API.Models
         public string? Password { get; set; }
 
         // Address
+        [ForeignKey("AddressId")]
         public string? Address1 { get; set; }
         public string? Address2 { get; set; }
         public string? Address3 { get; set; }
@@ -29,13 +31,16 @@ namespace Alpha.API.Models
         public string? Country { get; set; }
 
         // Email
+        [ForeignKey("EmailAddressId")]
         public ICollection<EmailAddressModel>? EmailAddress { get; set; }
 
         // Phone
+        [ForeignKey("PhoneId")]
         public ICollection<PhoneModel>? Phones { get; set; }
 
         // Payment
-        public int PaymentId { get; set; }
+        [ForeignKey("PaymentId")]
+        public ICollection<PaymentModel>? Payments { get; set; }
 
     }
 }

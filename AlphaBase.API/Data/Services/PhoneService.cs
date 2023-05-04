@@ -1,10 +1,11 @@
 ﻿using System;
 using Alpha.API.Data.Entities;
 using Alpha.API.Data.Interface;
+using Alpha.API.Data.Services.Interface;
 
 namespace Alpha.API.Data.Services
 {
-    public class PhoneService
+    public class PhoneService : IPhoneService
     {
         private readonly IPhoneRepository _phoneRepo;
 

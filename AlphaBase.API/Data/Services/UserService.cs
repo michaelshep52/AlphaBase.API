@@ -10,9 +10,9 @@ namespace Alpha.API.Data.Services
     {
         private readonly IUserRepository _userRepo;
 
-        public UserService(IUserRepository userRepo)
+        public UserService(IUserRepository userRepository)
         {
-            _userRepo = userRepo;
+            _userRepo = userRepository;
         }
 
         public async Task<bool> Create(User user)
@@ -53,6 +53,10 @@ namespace Alpha.API.Data.Services
                     userRepository.FirstName = user.FirstName;
                     userRepository.LastName = user.LastName;
                     userRepository.Password = user.Password;
+                    userRepository.Address = user.Address;
+                    userRepository.EmailAddress = user.EmailAddress;
+                    userRepository.Phones = user.Phones;
+                    userRepository.Payment = user.Payment;
 
                     _userRepo.Update(userRepository);
                 }
@@ -68,6 +72,10 @@ namespace Alpha.API.Data.Services
                 if (user != null)
                 {
                     _userRepo.Delete(user);
+                    if (userId > 0)
+                        return true;
+                    else
+                        return false;
                 }
             }
             return false;
