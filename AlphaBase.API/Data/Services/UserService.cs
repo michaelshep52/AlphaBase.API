@@ -56,7 +56,7 @@ namespace Alpha.API.Data.Services
                     userRepository.Address = user.Address;
                     userRepository.EmailAddress = user.EmailAddress;
                     userRepository.Phones = user.Phones;
-                    userRepository.Payment = user.Payment;
+                    userRepository.Payments = user.Payments;
 
                     _userRepo.Update(userRepository);
                 }

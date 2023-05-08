@@ -35,6 +35,30 @@ namespace Alpha.API.Data
         protected override void OnModelCreating(ModelBuilder bldr)
         {
             bldr.Entity<User>()
+                .HasOne(e => e.Address)
+                .WithOne(e => e.User)
+                .HasForeignKey<Address>(e => e.UserId)
+                .IsRequired();
+
+            bldr.Entity<EmailAddress>()
+                .HasOne(e => e.User)
+                .WithMany(e => e.EmailAddress)
+                .HasForeignKey(e => e.UserId)
+                .IsRequired();
+
+            bldr.Entity<Phone>()
+                .HasOne(e => e.User)
+                .WithMany(e => e.Phones)
+                .HasForeignKey(e => e.UserId)
+                .IsRequired();
+
+            bldr.Entity<User>()
+               .HasMany(e => e.Payments)
+               .WithOne(e => e.User)
+               .HasForeignKey(e => e.UserId)
+               .IsRequired();
+
+            bldr.Entity<User>()
               .HasData(new
               {
                   UserId = 1,
