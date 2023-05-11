@@ -12,11 +12,7 @@ namespace Alpha.API.Models
 
         [Required(ErrorMessage = "Mobile is required")]
         [RegularExpression(@"\d{10}", ErrorMessage = "Please enter 10 digit Mobile No.")]
-        public int PhoneNumber { get; set; }
-
-        public int? UserId { get; set; }
-        [ForeignKey("UserId")]
-        public virtual User? User { get; set; }
+        public string? PhoneNumber { get; set; }
     }
 }
 

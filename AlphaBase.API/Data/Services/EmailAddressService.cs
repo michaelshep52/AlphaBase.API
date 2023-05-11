@@ -3,6 +3,7 @@ using System.Net.Mail;
 using Alpha.API.Data.Entities;
 using Alpha.API.Data.Interface;
 using Alpha.API.Data.Services.Interface;
+using Alpha.API.Models;
 
 namespace Alpha.API.Data.Services
 {

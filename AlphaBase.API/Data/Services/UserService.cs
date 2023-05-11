@@ -3,6 +3,7 @@ using System.Security.Principal;
 using Alpha.API.Data.Entities;
 using Alpha.API.Data.Interface;
 using Alpha.API.Data.Services.Interface;
+using Alpha.API.Models;
 
 namespace Alpha.API.Data.Services
 {
@@ -54,6 +55,13 @@ namespace Alpha.API.Data.Services
                     userRepository.LastName = user.LastName;
                     userRepository.Password = user.Password;
                     userRepository.Address = user.Address;
+                   /*userRepository.Address2 = user.Address2;
+                    userRepository.Address3 = user.Address3;
+                    userRepository.CityTown = user.CityTown;
+                    userRepository.StateProvince = user.StateProvince;
+                    userRepository.PostalCode = user.PostalCode;
+                    userRepository.Country = user.Country;
+                   */
                     userRepository.EmailAddress = user.EmailAddress;
                     userRepository.Phones = user.Phones;
                     userRepository.Payments = user.Payments;

@@ -7,10 +7,7 @@ namespace Alpha.API.Data.Entities
         public string? Email { get; set; }
 
         // 1 User to Many Emails
-        public virtual User? User { get; set; }
-        public int? UserId { get; set; }
-        
-        
+        public User? User { get; set; }        
     }
 }
 

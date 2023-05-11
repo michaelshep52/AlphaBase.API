@@ -50,7 +50,7 @@ namespace Alpha.API.Controllers
             }
         }
 
-        // POST: api/Users
+        // POST: api/Address
         [HttpPut]
         public async Task<IActionResult> CreateAddress(Address address)
         {
@@ -68,7 +68,7 @@ namespace Alpha.API.Controllers
 
         // PUT api/values/5
         [HttpPut]
-        public async Task<IActionResult> UpdateUser(Address address)
+        public async Task<IActionResult> UpdateAddress(Address address)
         {
             if (address != null)
             {
@@ -87,7 +87,7 @@ namespace Alpha.API.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{addressId}")]
-        public async Task<IActionResult> DeleteUser(int addressId)
+        public async Task<IActionResult> DeleteAddress(int addressId)
         {
             var isAddressCreated = await _addressService.Delete(addressId);
 

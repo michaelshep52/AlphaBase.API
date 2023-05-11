@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Alpha.API.Data.Entities
+﻿namespace Alpha.API.Data.Entities
 {
     public class Address
     {
@@ -12,10 +10,6 @@ namespace Alpha.API.Data.Entities
         public string? StateProvince { get; set; }
         public string? PostalCode { get; set; }
         public string? Country { get; set; }
-
-        // 1 User to 1 Address
-        public virtual User? User { get; set; }
-        public int UserId { get; set; }
     }
 }
 

@@ -20,6 +20,18 @@ namespace Alpha.API.Data
                 .ForMember(u => u.StateProvince, o => o.MapFrom(m => m.Address.StateProvince))
                 .ForMember(u => u.PostalCode, o => o.MapFrom(m => m.Address.PostalCode))
                 .ForMember(u => u.Country, o => o.MapFrom(m => m.Address.Country));
+
+            this.CreateMap<EmailAddress, EmailAddressModel>()
+              .ReverseMap()
+              .ForMember(t => t.User, opt => opt.Ignore());
+
+            this.CreateMap<Phone, PhoneModel>()
+              .ReverseMap()
+              .ForMember(t => t.User, opt => opt.Ignore());
+
+            this.CreateMap<Payment, PaymentModel>()
+              .ReverseMap()
+              .ForMember(t => t.User, opt => opt.Ignore());
         }
     }
 }

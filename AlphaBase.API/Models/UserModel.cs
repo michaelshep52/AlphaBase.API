@@ -21,7 +21,7 @@ namespace Alpha.API.Models
         public string? Password { get; set; }
 
         // Address
-        [ForeignKey("AddressId")]
+        //[ForeignKey("AddressId")]
         public string? Address1 { get; set; }
         public string? Address2 { get; set; }
         public string? Address3 { get; set; }
@@ -31,15 +31,15 @@ namespace Alpha.API.Models
         public string? Country { get; set; }
 
         // Email
-        [ForeignKey("EmailAddressId")]
+        //[ForeignKey("EmailAddressId")]
         public ICollection<EmailAddressModel>? EmailAddress { get; set; }
 
         // Phone
-        [ForeignKey("PhoneId")]
+        //[ForeignKey("PhoneId")]
         public ICollection<PhoneModel>? Phones { get; set; }
 
         // Payment
-        [ForeignKey("PaymentId")]
+        //[ForeignKey("PaymentId")]
         public ICollection<PaymentModel>? Payments { get; set; }
 
     }

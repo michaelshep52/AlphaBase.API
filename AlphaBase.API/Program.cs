@@ -1,4 +1,5 @@
-﻿using Alpha.API.Data.Interface;
+﻿using System.Reflection;
+using Alpha.API.Data.Interface;
 using Alpha.API.Data.Repository;
 using Alpha.API.Data.Services;
 using Alpha.API.Data.Services.Interface;
@@ -20,6 +21,8 @@ builder.Services.AddScoped<IAddressService, AddressService>();
 builder.Services.AddScoped<IEmailAddressService, EmailAddressService>();
 builder.Services.AddScoped<IPhoneService, PhoneService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
+
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 builder.Services.AddControllers();
 /*builder.Services.AddApiVersioning(opt =>

@@ -3,6 +3,7 @@ using System;
 using Alpha.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Alpha.API.Migrations
 {
     [DbContext(typeof(AlphaBaseContext))]
-    partial class AlphaBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230509111015_MoreOnModelBuilderChanges")]
+    partial class MoreOnModelBuilderChanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,6 +63,8 @@ namespace Alpha.API.Migrations
                         {
                             AddressId = 1,
                             Address1 = "1461 Upper Second Creek Road",
+                            Address2 = "",
+                            Address3 = "",
                             CityTown = "Hazard",
                             Country = "USA",
                             PostalCode = "41701",
@@ -129,8 +134,8 @@ namespace Alpha.API.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("PhoneId"));
 
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("text");
+                    b.Property<int>("PhoneNumber")
+                        .HasColumnType("integer");
 
                     b.Property<int?>("UserId")
                         .HasColumnType("integer");
@@ -145,7 +150,7 @@ namespace Alpha.API.Migrations
                         new
                         {
                             PhoneId = 1,
-                            PhoneNumber = "606-438-4485",
+                            PhoneNumber = -4317,
                             UserId = 1
                         });
                 });
@@ -180,6 +185,7 @@ namespace Alpha.API.Migrations
                         new
                         {
                             UserId = 1,
+                            AddressId = 1,
                             FirstName = "Michael",
                             LastName = "Shepherd",
                             Password = "Password1234321!"

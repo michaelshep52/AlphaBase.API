@@ -6,8 +6,7 @@ namespace Alpha.API.Data.Entities
         public int PaymentId { get; set; }
 
         // 1 User to Many forms of payment
-        public virtual User? User { get; set; } 
-        public int? UserId { get; set; }
+        public User? User { get; set; } 
     }
 }
 

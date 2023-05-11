@@ -10,6 +10,9 @@ using Alpha.API.Data.Entities;
 using Alpha.API.Data.Services.Interface;
 using System.Security.Principal;
 using Alpha.API.Data.Services;
+using AutoMapper;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Alpha.API.Models;
 
 namespace Alpha.API.Controllers
 {
@@ -29,26 +32,40 @@ namespace Alpha.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetUserList()
         {
-            var usersList = await _userService.GetAll();
-            if (usersList == null)
+            try
             {
-                return NotFound();
+                var usersList = await _userService.GetAll();
+                if (usersList == null)
+                {
+                    return NotFound();
+                }
+                return Ok(usersList);
             }
-            return Ok(usersList);
+            catch (Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+            }
         }
 
         [HttpGet("{userId}")]
         public async Task<IActionResult> GetUserById(int userId)
         {
-            var user = await _userService.GetById(userId);
+            try
+            {
+                var user = await _userService.GetById(userId);
 
-            if (user != null)
-            {
-                return Ok(user);
+                if (user != null)
+                {
+                    return Ok(user);
+                }
+                else
+                {
+                    return BadRequest();
+                }
             }
-            else
+            catch (Exception)
             {
-                return BadRequest();
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
             }
         }
 
