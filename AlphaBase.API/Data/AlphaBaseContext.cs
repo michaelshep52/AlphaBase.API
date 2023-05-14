@@ -12,6 +12,10 @@ namespace Alpha.API.Data
         
         private readonly IConfiguration _config;
 
+        public AlphaBaseContext()
+        {
+        }
+
         public AlphaBaseContext(DbContextOptions options, IConfiguration config) : base(options)
         {
             _config = config;
@@ -23,13 +27,22 @@ namespace Alpha.API.Data
         public DbSet<Phone> Phone { get; set; }
         public DbSet<Payment> Payments { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseNpgsql(_config.GetConnectionString("AlphaBase"));
             //Add to help with migrations for Datetime timestamp!!!!
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
-        }
+        }*/
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+          => optionsBuilder.UseNpgsql(
+              "Host=localhost;Database=AlphaBase;Username=michaelshepherd;Password=Laelynes5267!",
+          options => options.MaxBatchSize(100))
+          .LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name },
+                          //DbLoggerCategory.Database.Transaction.Name},
+                          LogLevel.Debug)
+              .EnableSensitiveDataLogging();
         /*  
 
            protected override void OnModelCreating(ModelBuilder bldr)
