@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.API", "AlphaBase.API\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.Test", "Alpha.Test\Alpha.Test.csproj", "{002A696D-6A2B-424E-9B0F-51E433ACF0F1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaBase.MVC", "AlphaBase.MVC\AlphaBase.MVC.csproj", "{3801C3D5-5AD0-455F-A6D4-B2C8C5EF8F86}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{002A696D-6A2B-424E-9B0F-51E433ACF0F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{002A696D-6A2B-424E-9B0F-51E433ACF0F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{002A696D-6A2B-424E-9B0F-51E433ACF0F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3801C3D5-5AD0-455F-A6D4-B2C8C5EF8F86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3801C3D5-5AD0-455F-A6D4-B2C8C5EF8F86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3801C3D5-5AD0-455F-A6D4-B2C8C5EF8F86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3801C3D5-5AD0-455F-A6D4-B2C8C5EF8F86}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

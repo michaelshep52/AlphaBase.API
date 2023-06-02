@@ -32,7 +32,6 @@ namespace Alpha.Test
             //RetrieveAndUpdateEmailAddress();
             //RetrieveAndUpdatePhone();
             //RetrieveAndDeleteAUser();
-            ReturnUsersWithAll();
 
             Console.WriteLine("Press any key...");
             Console.ReadLine();
@@ -134,16 +133,6 @@ namespace Alpha.Test
         private static void ReturnAllUsersWithAddresses()
         {
             var user = _context.User.Include(b => b.Address).ToList();
-        }
-        private static void ReturnUsersWithAll()
-        {
-            string delimiter = ",";
-
-            //var user = _context.User.Include(b => b.Address).FirstOrDefault();
-            var user = _context.User.FirstOrDefault();
-
-            string results = $"{user.FirstName}{delimiter}{user.LastName}{delimiter}{user.Password}{delimiter}{user.Address}{delimiter}{user.EmailAddress}{delimiter}" +
-                    $"{user.Phones}{delimiter}{user.Payments}{Environment.NewLine}".FirstOrDefault();
         }
         private static void RetrieveAndUpdateUser()
         {
